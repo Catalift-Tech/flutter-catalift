@@ -45,3 +45,8 @@ android {
 flutter {
     source = "../.."
 }
+dependencies {
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-auth:21.0.1")
+    implementation("com.google.firebase:firebase-core:21.1.0")
+}
