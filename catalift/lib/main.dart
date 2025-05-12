@@ -511,7 +511,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 16),
             const Text(
-              'Your Name',
+              'Sangeerth B',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -519,7 +519,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 8),
             Text(
-              'user@example.com',
+              'sangeerth.b@outlook.com',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey.shade600,
