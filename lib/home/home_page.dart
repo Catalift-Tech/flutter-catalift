@@ -1,3 +1,5 @@
+import 'package:catalift_assignment/utils/function/sliver_tabBar.dart';
+import 'package:catalift_assignment/utils/function/study_container.dart';
 import 'package:catalift_assignment/utils/widgets/scrollable_tab_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -255,7 +257,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage>
           ),
           SliverPersistentHeader(
             pinned: true,
-            delegate: _SliverTabBarDelegate(
+            delegate: SliverTabBarDelegate(
               buildScrollableTabBar(
                 menuOptions: tabs,
                 tabController: _tabController,
@@ -269,11 +271,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  _buildCourseList(),
-                  _buildCourseList(),
-                  _buildCourseList(),
-                  _buildCourseList(),
-                  _buildCourseList(),
+                  studyContainer(),
+                  studyContainer(),
+                  studyContainer(),
+                  studyContainer(),
+                  studyContainer(),
                 ],
               ),
             ),
@@ -282,107 +284,4 @@ class _CourseDetailsPageState extends State<CourseDetailsPage>
       ),
     );
   }
-
-  Widget _buildCourseList() {
-    return GridView.count(
-      crossAxisCount: 2, // Two items per row
-      crossAxisSpacing: 12.0, // Spacing between columns
-      mainAxisSpacing: 8.0, // Spacing between rows
-      childAspectRatio: 0.8, // Adjust this ratio to give more vertical space
-
-      physics:
-          const NeverScrollableScrollPhysics(), // Disables scrolling within the GridView
-      children: [
-        studyContent(
-          'assets/ai.png',
-          "Artificial Intelligence and ML",
-          "\$1500",
-          '15 Lessons',
-        ),
-        studyContent(
-          'assets/ux.png',
-          "Artificial Intelligence and ML",
-          "\$1500",
-          '15 Lessons',
-        ),
-        studyContent(
-          'assets/coding.png',
-          "Artificial Intelligence and ML",
-          "\$1500",
-          '15 Lessons',
-        ),
-        studyContent(
-          'assets/ai.png',
-          "Artificial Intelligence and ML",
-          "\$1500",
-          '15 Lessons',
-        ),
-      ],
-    );
-  }
-}
-
-class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar _tabBar;
-
-  _SliverTabBarDelegate(this._tabBar);
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return Container(color: Colors.white, child: _tabBar);
-  }
-
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
-}
-
-Widget studyContent(
-  String imagePath,
-  String title,
-  String price,
-  String lessons,
-) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Stack(
-        children: [
-          Container(
-            height: 140,
-            width: double.infinity,
-            color: Colors.grey[300],
-            child: Image.asset(imagePath, fit: BoxFit.cover),
-          ),
-          const Positioned(
-            top: 8,
-            right: 8,
-            child: Icon(Icons.bookmark_border, color: Colors.black, size: 24),
-          ),
-        ],
-      ),
-      const SizedBox(height: 8),
-      Text(
-        title,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-        // overflow: TextOverflow.ellipsis, // Prevents text overflow
-        // maxLines: 1,
-      ),
-      const SizedBox(height: 4),
-      Text(price, style: const TextStyle(color: Colors.green)),
-      const SizedBox(height: 4),
-      Text(lessons, style: const TextStyle(color: Colors.grey)),
-    ],
-  );
 }
